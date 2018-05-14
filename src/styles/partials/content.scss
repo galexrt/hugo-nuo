@@ -169,15 +169,16 @@
   }
 
   pre {
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 1rem;
-    overflow-x: auto;
+    overflow-x: hidden;
     border-radius: $radius;
     font-size: 0.9rem;
     line-height: 1.618;
     white-space: pre;
     word-wrap: normal;
     word-break: normal;
+    width: 100%;
 
     code {
       font-size: 0.9rem;
