@@ -12,6 +12,10 @@
     }
   }
 
+  .post-header {
+      width: calc(100% - 8rem);
+  }
+
   & + .post-entry {
     border-color: $white-ter;
   }
@@ -46,10 +50,6 @@
     font-family: 'object-fit: cover;'; // Polyfill for object-fit
     border-radius: $radius;
 
-    & + .post-summary {
-      padding-right: 9rem;
-    }
-
     @media screen and (max-width: $tablet) {
       position: static;
       width: 100vw;
@@ -69,6 +69,7 @@
     font-size: 0.9rem;
     text-align: justify;
     opacity: 0.7;
+    width: calc(100% - 9rem);
   }
 
   .post-footer {
