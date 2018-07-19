@@ -16,7 +16,7 @@
       {{ if isset .Params "tags" }}
       <ul class="post-tags">
         {{ range $tag := .Params.tags }}
-          <li><a href="/tags/{{ $tag | urlize }}"><span class="tag">{{ $tag | title }}</span></a></li>
+          <li><a href="/tags/{{ $tag | lower | urlize }}"><span class="tag">{{ $tag | title }}</span></a></li>
         {{ end }}
       </ul>
       {{ end }}

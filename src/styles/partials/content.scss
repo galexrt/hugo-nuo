@@ -11,13 +11,13 @@
 
   a {
     padding-bottom: 0.1em;
-    border-bottom: 1px dashed $green-light;
+    border-bottom: 1px dashed $purple-light;
     color: $primary;
     opacity: 1;
 
     &:focus,
     &:hover {
-      border-bottom: 1px solid $green-light;
+      border-bottom: 1px solid $purple-light;
     }
   }
 
