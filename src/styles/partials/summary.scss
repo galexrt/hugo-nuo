@@ -13,7 +13,9 @@
   }
 
   .post-header {
-      width: calc(100% - 8rem);
+    @media screen and (min-width: $tablet) {
+        width: calc(100% - 8rem);
+    }
   }
 
   & + .post-entry {
@@ -69,7 +71,9 @@
     font-size: 0.9rem;
     text-align: justify;
     opacity: 0.7;
-    width: calc(100% - 9rem);
+    @media screen and (min-width: $tablet) {
+        width: calc(100% - 9rem);
+    }
   }
 
   .post-footer {
