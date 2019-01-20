@@ -8,8 +8,8 @@
 
 <!-- Scripts -->
 {{ if ne .Kind "home" }}
-<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script async src="{{ "js/video.js/6.2.8/video.novtt.min.js" | absURL }}"></script>
+<script async src="{{ "js/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML" | absURL }}"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
