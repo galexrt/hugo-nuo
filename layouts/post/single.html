@@ -9,6 +9,13 @@
       </p>
     </header>
     <article class="post-content">
+        {{- if and .Params.cover .Params.coverbig }}
+        <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+            <a href="{{ .Params.cover | absURL }}" itemprop="contentUrl">
+                <img itemprop="thumbnail" src="{{ .Params.cover | absURL }}" width="850px">
+            </a>
+        </figure>
+        {{- end }}
         {{- if and .TableOfContents .Params.toc }}
         <h2>Table of Contents</h2>
         {{ .TableOfContents }}
