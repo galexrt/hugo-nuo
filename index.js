@@ -31,10 +31,6 @@ const randomErrorEmoji = () => {
 };
 randomErrorEmoji();
 
-// Object-fit polyfill for post cover
-/* eslint-disable no-undef */
-objectFitImages('img.post-cover');
-
 // Show toTopBtn when scroll to 600px
 /* eslint-disable no-undef */
 let lastPosition = 0;
@@ -55,7 +51,6 @@ window.addEventListener('scroll', () => {
 });
 
 // Smooth Scroll to top when click toTopBtn
-const scroll = new SmoothScroll('a[href*="#"]');
 toTopBtn.addEventListener('click', () => {
-  scroll.animateScroll(0);
+  $("html, body").animate({ scrollTop: 0 }, "slow");
 });
