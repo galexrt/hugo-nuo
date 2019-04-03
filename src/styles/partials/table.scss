@@ -8,6 +8,12 @@ $table-row-active: $primary-invert;
 $table-row-even-background: $white-bis;
 $table-row-even-hover-background: $white-ter;
 
+.highlight {
+    table {
+        display: table !important;
+    }
+}
+
 table {
   background-color: $table-background;
   color: $table;
