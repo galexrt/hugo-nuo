@@ -10,7 +10,13 @@ $table-row-even-hover-background: $white-ter;
 
 .highlight {
     table {
-        display: table !important;
+        tbody {
+            tr {
+                td:nth-child(2) {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
