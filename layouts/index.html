@@ -36,9 +36,28 @@
           {{ if $paginator.HasNext }}
             <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older Posts →</a>
           {{ end }}
+          <div class="pagination-previous pagination-middle dropdown">
+            Pages
+            <div class="dropdown-content">
+            {{ range $paginator.Pagers }}
+              <a {{ if eq $paginator.PageNumber .PageNumber }}class="active"{{ end }} href="{{ .URL }}">Page {{ .PageNumber }}</a>
+            {{ end }}
+            </div>
+          </div>
         </nav>
       </footer>
     {{ end }}
   </section>
   {{ partial "footer.html" . }}
+{{ end }}
+
+{{ define "title" }}
+  {{ if .IsNode }}
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "post") (index .Site.Params "paginate" | default 10) }}
+      {{ if gt $paginator.PageNumber 1 }}
+      Posts Page {{ $paginator.PageNumber }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+    {{ else }}
+      {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+    {{ end }}
+  {{ end }}
 {{ end }}

@@ -7,7 +7,15 @@
   <!-- Page Title -->
   <title>
     {{- block "title" . -}}
-      {{ if eq .Kind "page" }}{{ .Title }}{{ else if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+      {{ if eq .Kind "page" }}
+        {{ .Title }}{{ if not .IsHome }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}{{ end }}
+      {{ else }}
+        {{ if .IsHome }}
+          {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+        {{ else }}
+          {{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+        {{ end }}
+      {{ end }}
     {{- end -}}
   </title>
 

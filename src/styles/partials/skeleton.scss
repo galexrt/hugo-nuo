@@ -78,6 +78,10 @@ a {
 
   .list-footer {
     padding: 1.5rem 0;
+
+    @media screen and (max-width: $tablet) {
+      padding: 1.5rem 0 85px 0;
+    }
   }
 
   @media screen and (max-width: $widescreen) {
