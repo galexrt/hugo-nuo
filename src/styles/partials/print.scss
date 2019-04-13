@@ -1,0 +1,36 @@
+@media print {
+    body {
+        background: #fff;
+    }
+    .site-header {
+        display: none;
+    }
+    section {
+        margin-left: 0 !important;
+    }
+    .main {
+        border: none;
+        border-left: none;
+        border-right: none;
+        max-width: 100%;
+    }
+    #disqus_thread {
+        display: none;
+    }
+    .suspension {
+        display: none;
+    }
+    #MathJax_Message {
+        display: none;
+    }
+    .post-content {
+        figure img {
+            box-shadow: none;
+        }
+        a:after{
+            content: " (" attr(href) ") ";
+            font-size: 0.9em;
+            font-weight: normal;
+        }
+    }
+}

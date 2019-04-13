@@ -28,6 +28,7 @@
     <div class="suspension">
       <a title="Go to top" class="to-top is-hide"><span class="icofont-caret-up"></span></a>
       {{ if and (eq .Type "post") (eq .Kind "page") }}
+        <a title="Print post / page" onclick="window.print()"><span class="icofont-print"></span></a>
         {{ if .Site.Params.changyan }}
         <a title="Go to comments" class="to-comment" href="#SOHUCS"><span class="icofont-comment"></span></a>
         {{ else if .Site.DisqusShortname }}
