@@ -3,7 +3,7 @@
 {{ if .Site.DisqusShortname }}<div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
-        this.page.identifier = '{{ .URL | relURL }}index.html';
+        this.page.identifier = '{{ .Permalink | relURL }}index.html';
         this.page.title = '{{ .Title }}';
         this.page.url = '{{ .Permalink }}index.html';
     };
