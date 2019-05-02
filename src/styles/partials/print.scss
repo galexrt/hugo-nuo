@@ -33,4 +33,15 @@
             font-weight: normal;
         }
     }
+    table {
+        overflow: visible !important;
+    }
+    .post-content pre {
+        white-space: pre-wrap;
+        line-height: 1.8em;
+        color: #000 !important;
+    }
+    table > tbody > tr > td:nth-child(1) > pre {
+        display: none;
+    }
 }
