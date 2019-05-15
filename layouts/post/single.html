@@ -15,7 +15,7 @@
         {{- end }}
         <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
             <a href="{{ .Params.cover | absURL }}" itemprop="contentUrl">
-                <img itemprop="thumbnail" src="{{ .Params.cover | absURL }}" width="850px">
+                <img itemprop="thumbnail" src="{{ .Params.cover | absURL }}" width="{{ .Params.coverWidth | default "850px"}}">
             </a>
         </figure>
         {{- if (.Params.coverbig | default true) }}
