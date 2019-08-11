@@ -294,6 +294,16 @@
     }
   }
 
+  .fullwidthdiv {
+    margin-left: -2rem;
+    margin-right: -2rem;
+
+    @media screen and (max-width: $tablet) {
+      margin-left: -1rem;
+      margin-right: -1rem;
+    }
+  }
+
   figure {
     display: block;
     margin: 2rem auto;
