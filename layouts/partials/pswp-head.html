@@ -1,0 +1,18 @@
+{{ if .IsPage }}
+{{- $pswpmincss := resources.Get "cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" | resources.ToCSS | resources.Minify -}}
+{{- $pswpdefaultskinmin := resources.Get "cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" | resources.ToCSS | resources.Minify -}}
+<link rel="stylesheet" href="{{ $pswpmincss.RelPermalink }}" />
+<link rel="stylesheet" href="{{ $pswpdefaultskinmin.RelPermalink }}" />
+
+{{- $pswpminjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js" | resources.Minify | fingerprint -}}
+<script src="{{ $pswpminjs.RelPermalink }}" {{ printf "integrity=%q" $pswpminjs.Data.Integrity | safeHTMLAttr }}></script>
+
+{{- $pswpminjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js" | resources.Minify | fingerprint -}}
+<script src="{{ $pswpminjs.RelPermalink }}" {{ printf "integrity=%q" $pswpminjs.Data.Integrity | safeHTMLAttr }}></script>
+
+{{- $jqueryminjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" | resources.Minify | fingerprint -}}
+<script src="{{ $jqueryminjs.RelPermalink }}" {{ printf "integrity=%q" $jqueryminjs.Data.Integrity | safeHTMLAttr }}></script>
+
+{{- $pswpinitjs := resources.Get "scripts/pswp-init.js" | resources.Minify | fingerprint -}}
+<script src="{{ $pswpinitjs.RelPermalink }}" {{ printf "integrity=%q" $pswpinitjs.Data.Integrity | safeHTMLAttr }}></script>
+{{ end }}

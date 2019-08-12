@@ -2,15 +2,22 @@
 {{- $avatar := resources.Get (.Site.Params.avatar | default "images/avatar.png") -}}
 
 <header class="site-header">
-  <a href="{{ .Site.BaseURL }}"><img class="avatar" src="{{ $avatar.RelPermalink }}" alt="Avatar"></a>
+  <a class="avatara" href="{{ .Site.BaseURL }}"><img class="avatar" src="{{ $avatar.RelPermalink }}" alt="Avatar"></a>
   {{  if eq .Kind "home" }}
   <h1 class="title"><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
   {{ else }}
   <h2 class="title"><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>
   {{ end }}
   <p class="subtitle">{{ .Site.Params.subtitle }}</p>
+  {{- $menuIcon := "icon icon-menu" -}}
+  {{- with .Site.Params.fontAwesome -}}
+    {{- $menuIcon = "fas fa-bars" -}}
+  {{- end -}}
+  {{- with .Site.Params.icofont -}}
+    {{- $menuIcon = "icofont-navigation-menu" -}}
+  {{- end -}}
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
-    <span class="icon icon-menu" aria-hidden="true"></span>
+    <span class="{{ $menuIcon }}" aria-hidden="true"></span>
   </button>
 
   <nav class="site-menu collapsed">
@@ -22,7 +29,7 @@
       {{ range .Site.Menus.main }}
         <li class="menu-item
           {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} is-active{{ end }}
-          {{ if and (eq .Identifier "tags") (eq $kind "taxonomy") }} is-active{{ end }}
+          {{ if and (eq .Identifier "tags") (and (eq $type "page") (or (eq $kind "taxonomyTerm") (eq $kind "taxonomy"))) }} is-active{{ end }}
           {{ if and (eq .Identifier "home") (eq $type "post") }} is-active{{ end }}">
           <a href="{{ .URL }}">{{ .Name }}</a>
         </li>
@@ -54,6 +61,7 @@
       {{- $weiboIcon := "icon icon-weibo" -}}
       {{- $wechatIcon := "icon icon-wechat" -}}
       {{- $linkedinIcon := "icon icon-linkedin" -}}
+      {{- $xingIcon := "icon icon-xing" -}}
       {{- $zhihuIcon := "icon icon-zhihu" -}}
       {{- $doubanIcon := "icon icon-douban" -}}
       {{- $bilibiliIcon := "icon icon-bilibili" -}}
@@ -82,10 +90,41 @@
         {{- $weiboIcon = "fab fa-weibo" -}}
         {{- $wechatIcon = "fab fa-weixin" -}}
         {{- $linkedinIcon = "fab fa-linkedin" -}}
+        {{- $xingIcon = "fab fa-xing" -}}
         {{- $zhihuIcon = "fab fa-zhihu" -}}
         {{- $doubanIcon = "fas fa-comment" -}}
         {{- $bilibiliIcon = "fas fa-video" -}}
         {{- $rssIcon = "fas fa-rss" -}}
+      {{- end -}}
+
+      {{- with .Site.Params.icofont -}}
+        {{- $emailIcon = "icofont-envelope" -}}
+        {{- $githubIcon = "icofont-github" -}}
+        {{- $twitterIcon = "icofont-twitter" -}}
+        {{- $facebookIcon = "icofont-facebook" -}}
+        {{- $googleIcon = "icofont-google-plus-g" -}}
+        {{- $instagramIcon = "icofont-instagram" -}}
+        {{- $youtubeIcon = "icofont-youtube" -}}
+        {{- $vimeoIcon = "icofont-vimeo" -}}
+        {{- $mediumIcon = "icofont-medium" -}}
+        {{- $redditIcon = "icofont-reddit" -}}
+        {{- $quoraIcon = "icofont-quora" -}}
+        {{- $stackoverflowIcon = "icofont-stack-overflow" -}}
+        {{- $npmIcon = "icofont-npm" -}}
+        {{- $dribbbleIcon = "icofont-dribbble" -}}
+        {{- $behanceIcon = "icofont-behance" -}}
+        {{- $pinterestIcon = "icofont-pinterest" -}}
+        {{- $jsfiddleIcon = "icofont-jsfiddle" -}}
+        {{- $codepenIcon = "icofont-codepen" -}}
+        {{- $codesandboxIcon = "icofont-code" -}}
+        {{- $weiboIcon = "icofont-weibo" -}}
+        {{- $wechatIcon = "icofont-weixin" -}}
+        {{- $linkedinIcon = "icofont-linkedin" -}}
+        {{- $xingIcon = "icofont-xing" -}}
+        {{- $zhihuIcon = "icofont-zhihu" -}}
+        {{- $doubanIcon = "icofont-comment" -}}
+        {{- $bilibiliIcon = "icofont-video" -}}
+        {{- $rssIcon = "icofont-rss" -}}
       {{- end -}}
 
       {{- with .Site.Params.email -}}
@@ -260,6 +299,14 @@
         <li class="social-item">
           <a href="//www.linkedin.com/in/{{ . }}" rel="me" title="LinkedIn" aria-label="LinkedIn">
             <span class="{{ $linkedinIcon }}" aria-hidden="true"></span>
+          </a>
+        </li>
+      {{- end -}}
+
+      {{- with .Site.Params.xing -}}
+      <li class="social-item">
+          <a href="//www.xing.com/profile/{{ . }}" rel="me" title="XING" aria-label="XING">
+            <span class="{{ $xingIcon }}" aria-hidden="true"></span>
           </a>
         </li>
       {{- end -}}

@@ -1,3 +1,7 @@
+a.avatara {
+  opacity: 1;
+}
+
 .avatar {
   margin-top: 3rem;
   width: 8rem;
@@ -6,10 +10,13 @@
   border: 4px solid $media-border;
   box-shadow: 0 1px 4px $box-shadow-darker;
   transition: all $easing $speed;
+  opacity: 1;
 
+  /*
   &:hover {
     transform: rotate(180deg);
   }
+  */
 
   @media screen and (max-width: $tablet) {
     position: absolute;
@@ -23,10 +30,14 @@
 }
 
 .title {
-  font-size: $size-4;
+  font-size: $size-1;
   font-family: $family-lobster;
   font-weight: $weight-bold;
   margin: 1rem auto;
+
+  a {
+    opacity: 1;
+  }
 
   @media screen and (max-width: $tablet) {
     margin-top: 3rem;
@@ -34,23 +45,24 @@
 }
 
 .subtitle {
+  font-size: $size-5;
   margin-bottom: 3rem;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .menu-toggle {
   display: none;
   border: none;
   outline: none;
-  width: 2rem;
-  height: 2rem;
-  font-size: $size-4;
+  width: 3rem;
+  height: 2.5rem;
+  font-size: $size-3;
   background-color: transparent;
   transition: all $easing $speed;
 
   @media screen and (max-width: $tablet) {
     position: absolute;
-    top: 1rem;
+    top: 0.7rem;
     right: 1rem;
     display: block;
   }
@@ -66,6 +78,7 @@
 
   & .menu-item {
     padding: 1rem 0;
+    font-size: $size-6;
 
     & a {
       display: inline-block;
@@ -102,7 +115,7 @@
 
   & .social-item {
     display: inline-block;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   & li + li {

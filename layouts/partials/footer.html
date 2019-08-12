@@ -1,26 +1,27 @@
-{{- $script := resources.Get "scripts/index.js" | resources.Minify -}}
+{{- $script := resources.Get "scripts/index.js" | resources.Minify | fingerprint -}}
 {{- $serviceWorker := resources.Get "service-worker-template.js" | resources.ExecuteAsTemplate "service-worker.js" . -}}
 
 <!-- Site Footer -->
 <footer class="site-footer">
-  <p>© {{ if eq now.Year 2017 }}2017{{ else }}2017-{{ now.Year }}{{ end }} {{ .Site.Title }}</p>
-  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  <p>© {{ if eq now.Year 2017 }}2017{{ else }}2017-{{ now.Year }}{{ end }} {{ .Site.Params.author | default .Site.Author }}</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with customized theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   {{ if and (isset .Site.Params "icp") (ne .Site.Params.ICP "") }}
     <p><a href="http://www.miitbeian.gov.cn" title="Check ICP info" target="_blank" rel="noopener">{{ .Site.Params.ICP }}</a></p>
   {{ end }}
 </footer>
 
-<!-- Smooth Scroll -->
-<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
-
-<!-- Video.js for post -->
-{{ if and (eq .Kind "page") (eq .Type "post") }}
-<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+{{- with .Site.Params.icofont -}}
+{{- $icofontmincss := resources.Get "styles/icofont.min.css" | resources.ToCSS | resources.Minify -}}
+<link rel="stylesheet" href="{{ $icofontmincss.RelPermalink }}" />
 {{ end }}
 
-<!-- Mathjax for post -->
 {{ if and (eq .Kind "page") (eq .Type "post") }}
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- Video.js for post -->
+{{- $videojs := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js" | resources.Minify | fingerprint -}}
+<script async src="{{ $videojs.RelPermalink }}" {{ printf "integrity=%q" $videojs.Data.Integrity | safeHTMLAttr }}></script>
+<!-- Mathjax for post -->
+{{- $mathjaxjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" | resources.Minify | fingerprint -}}
+<script async src="{{ $mathjaxjs.RelPermalink }}" {{ printf "integrity=%q" $mathjaxjs.Data.Integrity | safeHTMLAttr }}></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -45,7 +46,7 @@
 {{ end }}
 
 <!-- Main Scripts -->
-<script src="{{ $script.RelPermalink }}"></script>
+<script src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
 
 <script>
   if ('serviceWorker' in navigator) {

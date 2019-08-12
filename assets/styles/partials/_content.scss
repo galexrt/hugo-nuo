@@ -11,13 +11,13 @@
 
   & a {
     padding-bottom: 0.1em;
-    border-bottom: 1px dashed $green-light;
+    border-bottom: 1px dashed $purple-light;
     color: $primary;
     opacity: 1;
 
     &:focus,
     &:hover {
-      border-bottom: 1px solid $green-light;
+      border-bottom: 1px solid $purple-light;
     }
   }
 
@@ -294,6 +294,33 @@
       text-indent: 2rem;
       margin-left: 0;
       margin-top: 0.25rem;
+    }
+  }
+
+  div.fullwidthimg {
+    figure {
+      margin-left: -2rem;
+      margin-right: -2.1rem;
+
+      @media screen and (max-width: $tablet) {
+        margin-left: -1rem;
+        margin-right: -1rem;
+      }
+
+      img {
+        box-shadow: 2px 20px 40px 10px $box-shadow-dark inset;
+        width: 100%;
+      }
+    }
+  }
+
+  .fullwidthdiv {
+    margin-left: -2rem;
+    margin-right: -2.1rem;
+
+    @media screen and (max-width: $tablet) {
+      margin-left: -1rem;
+      margin-right: -1rem;
     }
   }
 

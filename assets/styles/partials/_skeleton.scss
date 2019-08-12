@@ -18,7 +18,7 @@ body {
 }
 
 a {
-  opacity: 0.8;
+  //opacity: 0.8;
   text-decoration: none;
   color: $text-strong;
 
@@ -39,6 +39,7 @@ a {
   padding: 1rem;
   width: 20rem;
   text-align: center;
+  background-color:rgba(255,255,255,0.85);
 
   & .is-active {
     & a {
@@ -49,7 +50,7 @@ a {
   }
 
   & a {
-    opacity: 0.5;
+    opacity: 0.75;
     color: $black-ter;
 
     &:focus,
@@ -84,6 +85,10 @@ a {
 
   & .list-footer {
     padding: 1.5rem 0;
+
+    @media screen and (max-width: $tablet) {
+      padding: 1.5rem 0 85px 0;
+    }
   }
 
   @media print, screen and (max-width: $tablet) {

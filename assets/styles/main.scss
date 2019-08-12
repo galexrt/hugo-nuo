@@ -1,6 +1,6 @@
 @import 'partials/reset';
 @import 'partials/variables';
-{{- with .Site.Params.fontAwesome -}}
+{{- with (or .Site.Params.fontAwesome .Site.Params.icofont) -}}
 {{- else -}}
 @import 'partials/icons';
 {{- end -}}
@@ -17,3 +17,4 @@
 @import 'partials/misc';
 @import 'partials/terms';
 @import 'partials/resume';
+@import 'partials/print';

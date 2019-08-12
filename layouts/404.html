@@ -1,11 +1,11 @@
 {{ define "title" }}Page not found{{ end }}
 
 {{ define "main" }}
-  {{ $script := resources.Get "scripts/index.js" | resources.Minify }}
+  {{ $script := resources.Get "scripts/index.js" | resources.Minify | fingerprint }}
   <div class="not-found">
     <h1 class="error-emoji"></h1>
     <p class="error-text">/* 404 page not found. */</p>
     <p class="error-link"><a href="/">↑ Back Home ↑</a></p>
   </div>
-  <script src="{{ $script.RelPermalink }}"></script>
+  <script src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
 {{ end }}
