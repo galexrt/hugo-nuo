@@ -1,6 +1,3 @@
-{{- $script := resources.Get "scripts/index.js" | resources.Minify | fingerprint -}}
-{{- $serviceWorker := resources.Get "service-worker-template.js" | resources.ExecuteAsTemplate "service-worker.js" . -}}
-
 <!-- Site Footer -->
 <footer class="site-footer">
   <p>© {{ if eq now.Year 2017 }}2017{{ else }}2017-{{ now.Year }}{{ end }} {{ .Site.Params.author | default .Site.Author }}</p>
@@ -46,15 +43,18 @@
 {{ end }}
 
 <!-- Main Scripts -->
+{{- $script := resources.Get "scripts/index.js" | resources.Minify | fingerprint -}}
 <script src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
 
+{{/*
+{{- $serviceWorker := resources.Get "service-worker-template.js" | resources.ExecuteAsTemplate "service-worker.js" . -}}
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}').then(function() {
       console.log('[ServiceWorker] Registered');
     });
   }
-</script>
+</script>*/}}
 
 <!-- Google Analytics -->
 {{ if .Site.GoogleAnalytics }}

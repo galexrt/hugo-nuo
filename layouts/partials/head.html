@@ -1,6 +1,6 @@
 <!-- Site & Page Meta Data -->
 {{- $gohugoio := "gohugoio" -}}
-{{- $themeColor := "#02b875" -}}
+{{- $themeColor := "#4d4ac7" -}}
 {{- $favicon := "favicon.ico" -}}
 {{- $icon16 := "icons/icon-16x16.png" -}}
 {{- $icon32 := "icons/icon-32x32.png" -}}
@@ -32,8 +32,8 @@
   {{ with .Site.Params.baidutongji }}<link href="//hm.baidu.com" rel="dns-prefetch">{{ end }}
 {{ end }}
 {{ with .Site.GoogleAnalytics }}<link href="https://www.google-analytics.com" rel="dns-prefetch">{{ end }}
-{{ with .Site.DisqusShortname }}<link href="//disqus.com" rel="dns-prefetch">{{ end }}
-{{ with .Site.DisqusShortname }}<link href="//c.disquscdn.com" rel="dns-prefetch">{{ end }}
+{{ with .Site.DisqusShortname }}<link href="https://disqus.com" rel="dns-prefetch">{{ end }}
+{{ with .Site.DisqusShortname }}<link href="https://c.disquscdn.com" rel="dns-prefetch">{{ end }}
 
 {{ if and (eq .Kind "page") (eq .Type "post") }}
 
