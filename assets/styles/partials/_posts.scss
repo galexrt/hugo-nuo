@@ -1,6 +1,17 @@
+.list-header {
+  & .list-label {
+    color: $white-ter;
+    background-color: $primary;
+  }
+}
 .post-detail {
   & .post-header {
     margin-bottom: 2.5rem;
+
+    & a {
+      color: $white-ter;
+      background-color: $primary;
+    }
 
     & .post-title {
       font-size: $size-3;
@@ -8,6 +19,8 @@
       font-weight: $weight-bold;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
+      color: $white-ter;
+      background-color: $primary;
     }
 
     & .post-meta {
@@ -33,11 +46,18 @@
         margin-bottom: 0.5rem;
         border-radius: $radius;
         padding: 5px 10px;
-        background: $background;
+        background: $white-ter;
         font-size: $size-7;
 
         & + li {
           margin-left: 0.5rem;
+        }
+
+        &:hover {
+          background-color: $primary;
+        }
+        & a:hover {
+          color: $white-ter;
         }
       }
     }

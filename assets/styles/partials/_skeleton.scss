@@ -39,24 +39,25 @@ a {
   padding: 1rem;
   width: 20rem;
   text-align: center;
-  background-color:rgba(255,255,255,0.85);
+  background-color: rgba(255,255,255,0.85);
 
   & .is-active {
     & a {
       opacity: 1;
-      color: $text-strong;
+      color: $primary;
+      background-color: $white-ter;
       font-weight: $weight-bold;
     }
   }
 
   & a {
-    opacity: 0.75;
+    opacity: 1;
     color: $black-ter;
 
     &:focus,
     &:hover {
       opacity: 1;
-      color: $text-strong;
+      color: $primary;
     }
   }
 

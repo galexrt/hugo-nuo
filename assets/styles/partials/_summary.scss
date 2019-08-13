@@ -2,13 +2,16 @@
   position: relative;
   line-height: 1.8;
   border-top: 1px solid transparent;
+  opacity: 1;
 
   & a {
-    color: $text;
+    color: $white-ter;
+    background-color: $primary;
 
     &:focus,
     &:hover {
       color: $primary;
+      background-color: $white-ter;
     }
   }
 
@@ -34,6 +37,9 @@
     font-size: $size-7;
     letter-spacing: 1px;
     text-transform: uppercase;
+    @media screen and (min-width: $tablet) {
+        width: calc(100% - 9rem);
+    }
   }
 
   & .post-cover {
@@ -64,7 +70,7 @@
     margin-bottom: 1rem;
     font-size: 0.9rem;
     text-align: justify;
-    opacity: 0.7;
+    opacity: 0.95;
     @media screen and (min-width: $tablet) {
         width: calc(100% - 9rem);
     }

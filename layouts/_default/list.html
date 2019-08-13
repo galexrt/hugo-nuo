@@ -1,6 +1,6 @@
 {{ define "title" }}
-  {{ if eq .Data.Singular "tag" }}Tag <span class="icofont-arrow-right" aria-hidden="true"></span> {{ .Data.Term }}
-  {{ else if eq .Data.Singular "category" }}Category <span class="icofont-arrow-right" aria-hidden="true"></span> {{ .Data.Term }}
+  {{ if eq .Data.Singular "tag" }}Tag - {{ .Data.Term }}
+  {{ else if eq .Data.Singular "category" }}Category - {{ .Data.Term }}
   {{ else }}Posts{{ end }}
   {{ if isset .Site.Params "seotitle" }} | {{ .Site.Params.seotitle }}{{ else }} | {{ .Site.Title }}{{ end }}
 {{ end }}
@@ -8,8 +8,10 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
   <section class="main post-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">Posts List</h2>
+    <header class="list-header">
+      <h1 class="list-label">{{ if eq .Data.Singular "tag" }}Tag - {{ .Data.Term }}
+      {{ else if eq .Data.Singular "category" }}Category - {{ .Data.Term }}
+      {{ else }}Posts{{ end }}</h1>
     </header>
     {{ $paginator := .Paginate (where .Data.Pages "Type" "post") (index .Site.Params "paginate" | default 10) }}
     {{ if gt $paginator.TotalPages 1 }}
@@ -43,6 +45,14 @@
           {{ if $paginator.HasNext }}
             <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older Posts <span class="icofont-arrow-right" aria-hidden="true"></span></a>
           {{ end }}
+          <div class="pagination-previous pagination-middle dropdown">
+            Pages
+            <div class="dropdown-content">
+            {{ range $paginator.Pagers }}
+              <a {{ if eq $paginator.PageNumber .PageNumber }}class="active"{{ end }} href="{{ .URL }}">Page {{ .PageNumber }}</a>
+            {{ end }}
+            </div>
+          </div>
         </nav>
       </footer>
     {{ end }}

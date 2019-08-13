@@ -37,6 +37,7 @@ a.avatara {
 
   a {
     opacity: 1;
+    color: $black-ter;
   }
 
   @media screen and (max-width: $tablet) {
@@ -47,7 +48,7 @@ a.avatara {
 .subtitle {
   font-size: $size-5;
   margin-bottom: 3rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .menu-toggle {
@@ -59,6 +60,7 @@ a.avatara {
   font-size: $size-3;
   background-color: transparent;
   transition: all $easing $speed;
+  color: $primary;
 
   @media screen and (max-width: $tablet) {
     position: absolute;

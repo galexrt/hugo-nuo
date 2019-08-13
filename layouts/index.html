@@ -1,3 +1,14 @@
+{{ define "title" }}
+  {{ if .IsNode }}
+    {{ $paginator := .Paginate (where (where .Site.Pages ".Section" "post") ".IsPage" true) (index .Site.Params "paginate" | default 10) }}
+      {{ if gt $paginator.PageNumber 1 }}
+      Posts Page {{ $paginator.PageNumber }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+    {{ else }}
+      {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ define "main" }}
   {{ partial "header.html" . }}
   <section class="main post-list">
@@ -49,15 +60,4 @@
     {{ end }}
   </section>
   {{ partial "footer.html" . }}
-{{ end }}
-
-{{ define "title" }}
-  {{ if .IsNode }}
-    {{ $paginator := .Paginate (where (where .Site.Pages ".Section" "post") ".IsPage" true) (index .Site.Params "paginate" | default 10) }}
-      {{ if gt $paginator.PageNumber 1 }}
-      Posts Page {{ $paginator.PageNumber }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
-    {{ else }}
-      {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
-    {{ end }}
-  {{ end }}
 {{ end }}
