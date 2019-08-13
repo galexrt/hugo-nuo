@@ -37,7 +37,12 @@ a.avatara {
 
   a {
     opacity: 1;
-    color: $black-ter;
+    color: $primary;
+
+    &:focus,
+    &:hover {
+      background-color: $white-ter;
+    }
   }
 
   @media screen and (max-width: $tablet) {
