@@ -20,6 +20,7 @@
 {{- $mathjaxjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" | resources.Minify | fingerprint -}}
 <script async src="{{ $mathjaxjs.RelPermalink }}" {{ printf "integrity=%q" $mathjaxjs.Data.Integrity | safeHTMLAttr }}></script>
 <script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["MathJax"] = "{{ path.Dir $mathjaxjs.RelPermalink }}";
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
@@ -46,7 +47,6 @@
 {{- $script := resources.Get "scripts/index.js" | resources.Minify | fingerprint -}}
 <script src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
 
-{{/*
 {{- $serviceWorker := resources.Get "service-worker-template.js" | resources.ExecuteAsTemplate "service-worker.js" . -}}
 <script>
   if ('serviceWorker' in navigator) {
@@ -54,7 +54,7 @@
       console.log('[ServiceWorker] Registered');
     });
   }
-</script>*/}}
+</script>
 
 <!-- Google Analytics -->
 {{ if .Site.GoogleAnalytics }}

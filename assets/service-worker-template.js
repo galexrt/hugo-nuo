@@ -1,46 +1,57 @@
-var cacheName = 'hugo-nuo-v6';
+var cacheName = 'hugo-nuo-v7';
 var filesToCache = [
-    '404.html',
-    'favicon.ico',
-    'manifest.json',
-    'icons/icon-16x16.png',
-    'icons/icon-32x32.png',
-    'icons/icon-128x128.png',
-    'icons/icon-144x144.png',
-    'icons/icon-152x152.png',
-    'icons/icon-192x192.png',
-    'icons/icon-256x256.png',
-    'icons/icon-512x512.png',
-    'images/avatar.png',
-    'images/grey-prism.svg',
-    'images/qrcode.jpg',
-    'styles/main-rendered.min.css',
-    {{ with .Site.Params.customStyle }}'styles/custom.min.css', {{ end }}
-'scripts/index.min.js',
+    '{{ "404.html" | absURL }}',
+    '{{ "favicon.ico" | absURL }}',
+    '{{ "manifest.json" | absURL }}',
+    '{{ "icons/icon-16x16.png" | absURL }}',
+    '{{ "icons/icon-32x32.png" | absURL }}',
+    '{{ "icons/icon-128x128.png" | absURL }}',
+    '{{ "icons/icon-144x144.png" | absURL }}',
+    '{{ "icons/icon-152x152.png" | absURL }}',
+    '{{ "icons/icon-192x192.png" | absURL }}',
+    '{{ "icons/icon-256x256.png" | absURL }}',
+    '{{ "icons/icon-512x512.png" | absURL }}',
+    '{{ "images/avatar.png" | absURL }}',
+    '{{ "images/grey-prism.svg" | absURL }}',
+{{ $style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "styles/main-rendered.scss" . | resources.ToCSS | resources.Minify }}
+    '{{ $style.Permalink }}',
+{{ with .Site.Params.customStyle }}
+{{ $customStyle := resources.Get (.Site.Params.customStyle | default "styles/custom.scss") | resources.ToCSS | resources.Minify }}
+    '{{ $customStyle.Permalink }}',
+{{ end }}
+{{ $scriptsindexjs := resources.Get "scripts/index.js" | resources.Minify }}
+    '{{ $scriptsindexjs.Permalink }}',
+{{ $pswpinitjs := resources.Get "scripts/pswp-init.js" | resources.Minify }}
+    '{{ $pswpinitjs.Permalink }}',
 
-    // Google fonts
-    'https://fonts.googleapis.com/css?family=Lobster',
-    'https://fonts.gstatic.com/s/lobster/v20/neILzCirqoswsqX9zoKmM4MwWJU.woff2',
+    // Google fonts (local)
+    '{{ "fonts/lobster.woff2" | absURL }}',
 
     {{ with .Site.Params.fontAwesome }}
-// FontAwesome
-'https://use.fontawesome.com/releases/v5.7.2/css/all.css',
+    // FontAwesome
+    'https://use.fontawesome.com/releases/v5.7.2/css/all.css',
     {{ else }}
-{ { - with .Site.Params.icofont -} }
-{ { else } }
-// Iconfont
-'https://at.alicdn.com/t/font_174169_qmgvd10zwbf.woff',
+    {{ with .Site.Params.icofont }}
+    {{ $icofontmincss := resources.Get "styles/icofont.min.css" | resources.ToCSS | resources.Minify }}
+    '{{ $icofontmincss.Permalink }}',
+    '{{ "fonts/icofont.woff2" | absURL }}',
+    {{ else }}
+    // Iconfont
+    'https://at.alicdn.com/t/font_174169_qmgvd10zwbf.woff',
     {{ end }}
-{ { end } }
+    {{ end }}
 
-// Video.js
-{ { - $videojsmincss := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css" | resources.ToCSS | resources.Minify -} }
-'{{ $videojsmincss.RelPermalink }}',
-    'https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js',
+    // Video.js
+    {{ $videojsmincss := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css" | resources.ToCSS | resources.Minify }}
+    '{{ $videojsmincss.Permalink }}',
+    {{ $videominjs := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js" | resources.Minify }}
+    '{{ $videominjs.Permalink }}',
 
     // MathJax
-    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
-    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js?V=2.7.5',
+{{ $mathjaxjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" | resources.Minify | fingerprint }}
+    '{{ $mathjaxjs.Permalink }}',
+    '{{ path.Join (path.Dir $mathjaxjs.RelPermalink) "extensions/MathMenu.js" | absURL }}',
+    '{{ path.Join (path.Dir $mathjaxjs.RelPermalink) "extensions/MathZoom.js" | absURL }}',
 ];
 
 // Cache the application assets
