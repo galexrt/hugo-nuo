@@ -30,7 +30,7 @@
       </footer>
     {{ end }}
     {{ if ne $paginator.TotalPages 0 }}
-      {{ range $paginator.Pages.ByDate.Reverse }}
+      {{ range $paginator.Pages.ByPublishDate.Reverse }}
         {{ .Render "summary" }}
       {{ end }}
     {{ else }}

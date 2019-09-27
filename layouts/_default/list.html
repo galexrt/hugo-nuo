@@ -13,7 +13,7 @@
       {{ else if eq .Data.Singular "category" }}Category - {{ .Data.Term }}
       {{ else }}Posts{{ end }}</h1>
     </header>
-    {{ $paginator := .Paginate (where .Data.Pages "Type" "post") (index .Site.Params "paginate" | default 10) }}
+    {{ $paginator := .Paginate (where .Data.Pages.ByPublishDate "Type" "post") (index .Site.Params "paginate" | default 10) }}
     {{ if gt $paginator.TotalPages 1 }}
       <footer class="list-footer">
         <nav class="pagination">
