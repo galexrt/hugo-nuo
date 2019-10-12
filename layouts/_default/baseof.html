@@ -19,16 +19,20 @@
     {{ if ne .Kind "404" }}
     {{- $upIcon := "icon icon-up" -}}
     {{- $commentIcon := "icon icon-comment" -}}
+    {{- $printIcon := "icon icon-print" -}}
     {{- with .Site.Params.fontAwesome -}}
       {{- $upIcon = "fas fa-caret-up" -}}
       {{- $commentIcon = "fas fa-comment-dots" -}}
+      {{- $printIcon = "fas fa-print" -}}
     {{- end -}}
     {{- with .Site.Params.icofont -}}
       {{- $upIcon = "icofont-caret-up" -}}
       {{- $commentIcon = "icofont-comment" -}}
+      {{- $printIcon = "icofont-print" -}}
     {{- end -}}
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="{{ $upIcon }}" aria-hidden="true"></span></a>
+      <a role="button" aria-label="Print page" title="Print page" class="print-page" onclick="window.print()"><span class="{{ $printIcon }}" aria-hidden="true"></span></a>
       {{ if and (eq .Type "post") (eq .Kind "page") }}
         {{ if .Site.Params.changyan }}
 	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#SOHUCS"><span class="{{ $commentIcon }}" aria-hidden="true"></span></a>

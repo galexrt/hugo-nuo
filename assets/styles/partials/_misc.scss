@@ -36,6 +36,16 @@
         border-color: $grey;
       }
     }
+    &.print-page {
+      color: $primary;
+      transition: all $easing $speed;
+
+      &:hover {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
 
     &.to-comment {
       color: $primary;

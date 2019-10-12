@@ -9,13 +9,13 @@
       </p>
     </header>
     <article class="post-content">
-        {{- if .Params.cover }}
+      {{ if isset .Params "cover" }}
         {{- if (.Params.coverbig | default true) }}
         <div class="fullwidthimg">
         {{- end }}
         <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
-            <a href="{{ .Params.cover | absURL }}" itemprop="contentUrl">
-                <img itemprop="thumbnail" src="{{ .Params.cover | absURL }}" width="{{ .Params.coverWidth | default "850px"}}">
+            <a href="{{ .Params.cover | default false | absURL }}" itemprop="contentUrl">
+                <img itemprop="thumbnail" src="{{ .Params.cover | default false | absURL }}" width="{{ .Params.coverWidth | default "850px"}}">
             </a>
         </figure>
         {{- if (.Params.coverbig | default true) }}

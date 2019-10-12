@@ -9,7 +9,7 @@
       </p>
     </header>
     <article class="post-content">
-        {{- if .Params.cover }}
+      {{ if isset .Params "cover" }}
         {{- if (.Params.coverbig | default true) }}
         <div class="fullwidthimg">
         {{- end }}
