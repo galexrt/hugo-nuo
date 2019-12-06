@@ -45,13 +45,13 @@
   {{ if isset .Params "cover" }}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
     <meta name="twitter:description" content="{{ .Summary | plainify }}">
     <meta name="twitter:image" content="{{ .Params.cover | absURL }}">
   {{ else }}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
     <meta name="twitter:description" content="{{ .Summary | plainify }}">
     <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
   {{ end }}
@@ -72,13 +72,13 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-  <meta name="twitter:title" content="{{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
   {{ with .Site.Params.description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
   <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
 
   <!-- Facebook Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta property="og:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
   {{ with .Site.Params.description }}<meta property="og:description" content="{{ . }}">{{ end }}
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:image" content="{{ $avatar.RelPermalink }}">
