@@ -15,73 +15,88 @@
 {{- $fontAwesome := "https://use.fontawesome.com/releases/v5.8.1/css/all.css" -}}
 {{- $fontAwesomeIntegrity := "sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" -}}
 {{ if not .Site.Params.noexternal }}
-  <!-- DNS Prefetch -->
-  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
-  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
-  {{ with .Site.Params.fontAwesome }}
-  <link href="//use.fontawesome.com" rel="dns-prefetch">
-  {{ else }}
-  {{- with .Site.Params.icofont -}}
-  {{ else }}
-  <link href="//at.alicdn.com" rel="dns-prefetch">
-  {{ end }}
-  {{ end }}
-  <link href="//fonts.googleapis.com" rel="dns-prefetch">
-  <link href="//fonts.gstatic.com" rel="dns-prefetch">
-  {{ with .Site.Params.Gitment }}<link href="//imsun.github.io" rel="dns-prefetch">{{ end }}
-  {{ with .Site.Params.baidutongji }}<link href="//hm.baidu.com" rel="dns-prefetch">{{ end }}
+<!-- DNS Prefetch -->
+<link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+<link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+{{ with .Site.Params.fontAwesome }}
+<link href="//use.fontawesome.com" rel="dns-prefetch">
+{{ else }}
+{{- with .Site.Params.icofont -}}
+{{ else }}
+<link href="//at.alicdn.com" rel="dns-prefetch">
 {{ end }}
-{{ with .Site.GoogleAnalytics }}<link href="https://www.google-analytics.com" rel="dns-prefetch">{{ end }}
-{{ with .Site.DisqusShortname }}<link href="https://disqus.com" rel="dns-prefetch">{{ end }}
-{{ with .Site.DisqusShortname }}<link href="https://c.disquscdn.com" rel="dns-prefetch">{{ end }}
+{{ end }}
+<link href="//fonts.googleapis.com" rel="dns-prefetch">
+<link href="//fonts.gstatic.com" rel="dns-prefetch">
+{{ with .Site.Params.Gitment }}
+<link href="//imsun.github.io" rel="dns-prefetch">{{ end }}
+{{ with .Site.Params.baidutongji }}
+<link href="//hm.baidu.com" rel="dns-prefetch">{{ end }}
+{{ end }}
+{{ with .Site.GoogleAnalytics }}
+<link href="https://www.google-analytics.com" rel="dns-prefetch">{{ end }}
+{{ with .Site.DisqusShortname }}
+<link href="https://disqus.com" rel="dns-prefetch">{{ end }}
+{{ with .Site.DisqusShortname }}
+<link href="https://c.disquscdn.com" rel="dns-prefetch">{{ end }}
 
 {{ if and (eq .Kind "page") (eq .Type "post") }}
 
-  <!-- Page Author & Description -->
-  {{ with .Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-  <meta name="description" content="{{ .Summary | plainify }}">
+<!-- Page Author & Description -->
+{{ with .Params.author }}
+<meta name="author" content="{{ . }}">{{ end }}
+<meta name="description" content="{{ .Summary | plainify }}">
 
-  <!-- Twitter Card -->
-  {{ if isset .Params "cover" }}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-    <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-    <meta name="twitter:description" content="{{ .Summary | plainify }}">
-    <meta name="twitter:image" content="{{ .Params.cover | absURL }}">
-  {{ else }}
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-    <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-    <meta name="twitter:description" content="{{ .Summary | plainify }}">
-    <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
-  {{ end }}
+<!-- Twitter Card -->
+{{ if isset .Params "cover" }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
+<meta name="twitter:title"
+  content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+<meta name="twitter:description" content="{{ .Summary | plainify }}">
+<meta name="twitter:image" content="{{ .Params.cover | absURL }}">
+{{ else }}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
+<meta name="twitter:title"
+  content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+<meta name="twitter:description" content="{{ .Summary | plainify }}">
+<meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
+{{ end }}
 
-  <!-- Facebook Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ .Title }}">
-  <meta property="og:description" content="{{ .Summary | plainify }}">
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:image" content="{{ if isset .Params "cover" }}{{ .Params.cover | absURL }}{{ else }}{{ $avatar.RelPermalink }}{{ end }}">
+<!-- Facebook Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Summary | plainify }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image"
+  content="{{ if isset .Params "cover" }}{{ .Params.cover | absURL }}{{ else }}{{ $avatar.RelPermalink }}{{ end }}">
 
 {{ else }}
 
-  <!-- Site Author & Description -->
-  {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-  {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+<!-- Site Author & Description -->
+{{ with .Site.Params.author }}
+<meta name="author" content="{{ . }}">{{ end }}
+{{ with .Site.Params.description }}
+<meta name="description" content="{{ . }}">{{ end }}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-  <meta name="twitter:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-  {{ with .Site.Params.description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
-  <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
+<meta name="twitter:title"
+  content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+{{ with .Site.Params.description }}
+<meta name="twitter:description" content="{{ . }}">{{ end }}
+<meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
 
-  <!-- Facebook Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-  {{ with .Site.Params.description }}<meta property="og:description" content="{{ . }}">{{ end }}
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:image" content="{{ $avatar.RelPermalink }}">
+<!-- Facebook Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title"
+  content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
+{{ with .Site.Params.description }}
+<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $avatar.RelPermalink }}">
 
 {{ end }}
 
@@ -91,7 +106,7 @@
 <!-- Permalink & RSSlink -->
 <link rel="canonical" href="{{ .Permalink }}">
 {{ range .AlternativeOutputFormats -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{ end -}}
 
 <!-- Rending Prefs -->
@@ -103,11 +118,16 @@
 <!-- SEO Prefs -->
 <meta name="robots" content="index,follow">
 <meta name="referrer" content="origin-when-cross-origin">
-{{ with .Site.Params.googlesiteverification }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
-{{ with .Site.Params.msvalidate }}<meta name="msvalidate.01" content="{{ . }}">{{ end }}
-{{ with .Site.Params.baidusiteverification }}<meta name="baidu-site-verification" content="{{ . }}">{{ end }}
-{{ with .Site.Params.sogousiteverification }}<meta name="sogou_site_verification" content="{{ . }}">{{ end }}
-{{ with .Site.Params.sositeverification }}<meta name="360-site-verification" content="{{ . }}">{{ end }}
+{{ with .Site.Params.googlesiteverification }}
+<meta name="google-site-verification" content="{{ . }}">{{ end }}
+{{ with .Site.Params.msvalidate }}
+<meta name="msvalidate.01" content="{{ . }}">{{ end }}
+{{ with .Site.Params.baidusiteverification }}
+<meta name="baidu-site-verification" content="{{ . }}">{{ end }}
+{{ with .Site.Params.sogousiteverification }}
+<meta name="sogou_site_verification" content="{{ . }}">{{ end }}
+{{ with .Site.Params.sositeverification }}
+<meta name="360-site-verification" content="{{ . }}">{{ end }}
 
 <!-- Favicon and Touch icons -->
 <meta name="theme-color" content="{{ $themeColor }}">
@@ -128,21 +148,27 @@
 <!-- Preload -->
 <link rel="preload" href="{{ $style.RelPermalink }}" as="style">
 <!-- FontAwesome is not preloaded because we use integrity and https://bugs.chromium.org/p/chromium/issues/detail?id=677022  -->
-{{ with .Site.Params.customStyle }}<link rel="preload" href="{{ $customStyle.RelPermalink }}" as="style">{{ end }}
+{{ with .Site.Params.customStyle }}
+<link rel="preload" href="{{ $customStyle.RelPermalink }}" as="style">{{ end }}
 <link rel="preload" href="{{ $avatar.RelPermalink }}" as="image">
 <link rel="preload" href="{{ $bg.RelPermalink }}" as="image">
 
 <!-- Main Styles -->
 <style>
   body {
-    background: rgb(244, 243, 241) url('{{ $bg.RelPermalink }}') repeat fixed;
+    background-color: rgb(244, 243, 241);
+    background-image: url('{{ $bg.RelPermalink }}');
+    background-repeat: repeat;
+    background-attachment: fixed;
   }
 </style>
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 {{ with .Site.Params.fontAwesome }}
-<link rel="stylesheet" href="{{ $fontAwesome }}" {{ printf "integrity=%q" $fontAwesomeIntegrity | safeHTMLAttr }} crossorigin="anonymous">
+<link rel="stylesheet" href="{{ $fontAwesome }}" {{ printf "integrity=%q" $fontAwesomeIntegrity | safeHTMLAttr }}
+  crossorigin="anonymous">
 {{ end }}
-{{ with .Site.Params.customStyle }}<link rel="stylesheet" href="{{ $customStyle.RelPermalink }}">{{ end }}
+{{ with .Site.Params.customStyle }}
+<link rel="stylesheet" href="{{ $customStyle.RelPermalink }}">{{ end }}
 
 <!-- Video.js Styles -->
 {{ if and (eq .Kind "page") (eq .Type "post") }}
