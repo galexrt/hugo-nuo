@@ -45,56 +45,57 @@
 <!-- Page Author & Description -->
 {{ with .Params.author }}
 <meta name="author" content="{{ . }}">{{ end }}
-<meta name="description" content="{{ .Summary | plainify }}">
+<meta name="description" content="{{ .Description | plainify | htmlUnescape }}">
 
 <!-- Twitter Card -->
-{{ if isset .Params "cover" }}
-<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
 <meta name="twitter:title"
   content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-<meta name="twitter:description" content="{{ .Summary | plainify }}">
+{{ if isset .Params "cover" }}
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ .Params.cover | absURL }}">
 {{ else }}
 <meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
-<meta name="twitter:title"
-  content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-<meta name="twitter:description" content="{{ .Summary | plainify }}">
 <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
 {{ end }}
+<meta name="twitter:description" content="{{ .Description | plainify | htmlUnescape }}">
 
 <!-- Facebook Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{ .Title }}">
-<meta property="og:description" content="{{ .Summary | plainify }}">
+<meta property="og:description" content="{{ .Description | plainify | htmlUnescape }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image"
   content="{{ if isset .Params "cover" }}{{ .Params.cover | absURL }}{{ else }}{{ $avatar.RelPermalink }}{{ end }}">
 
 {{ else }}
 
+{{ $description := "" }}
+{{ if isset .Site.Params "description" }}
+{{ $description = .Site.Params.description | plainify | htmlUnescape }}
+{{ end }}
+{{ if isset .Params "description" }}
+{{ $description = .Params.description | plainify | htmlUnescape }}
+{{ end }}
+
 <!-- Site Author & Description -->
 {{ with .Site.Params.author }}
 <meta name="author" content="{{ . }}">{{ end }}
-{{ with .Site.Params.description }}
-<meta name="description" content="{{ . }}">{{ end }}
+<meta name="description" content="{{ $description }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@{{ .Site.Params.twitter | default $gohugoio }}">
 <meta name="twitter:title"
   content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-{{ with .Site.Params.description }}
-<meta name="twitter:description" content="{{ . }}">{{ end }}
+<meta name="twitter:description" content="{{ $description }}">
 <meta name="twitter:image" content="{{ $avatar.RelPermalink }}">
 
 <!-- Facebook Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title"
   content="{{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}">
-{{ with .Site.Params.description }}
-<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:description" content="{{ $description }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{ $avatar.RelPermalink }}">
 
