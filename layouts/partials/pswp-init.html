@@ -1,4 +1,4 @@
-{{ if .IsPage }}
+{{ if or .IsPage (eq (default false .Params.pswp) true) }}
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
   <!-- Background of PhotoSwipe.
      It's a separate element, as animating opacity is faster than rgba(). -->
