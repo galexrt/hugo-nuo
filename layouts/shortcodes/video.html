@@ -37,14 +37,10 @@
 
       {{% video
         "/media/posts/hugo-nuo-post-preview/videojs.mp4"
-        "/media/posts/hugo-nuo-post-preview/videojs.webm"
-        "/media/posts/hugo-nuo-post-preview/videojs.ogv"
       %}}
 
        {{% video
         "/media/posts/hugo-nuo-post-preview/videojs.mp4"
-        "/media/posts/hugo-nuo-post-preview/videojs.webm"
-        "/media/posts/hugo-nuo-post-preview/videojs.ogv"
         "/images/poster.jpg"
       %}}
 
@@ -52,14 +48,10 @@
 
       {{%
         video mp4="/media/posts/hugo-nuo-post-preview/videojs.mp4"
-        webm="/media/posts/hugo-nuo-post-preview/videojs.webm"
-        ogv="/media/posts/hugo-nuo-post-preview/videojs.ogv"
       %}}
 
       {{%
         video mp4="/media/posts/hugo-nuo-post-preview/videojs.mp4"
-        webm="/media/posts/hugo-nuo-post-preview/videojs.webm"
-        ogv="/media/posts/hugo-nuo-post-preview/videojs.ogv"
         poster="/images/poster.jpg"
       %}}
 
@@ -68,22 +60,18 @@
 {{/* DEFAULTS */}}
 {{- $poster := resources.Get (.Site.Params.poster | default "images/poster.jpg") -}}
 
+<div class="fullwidthimg">
+  <div>
 {{ if .IsNamedParams }}
-
-  <video id="my-player" class="video-js vjs-big-play-centered" controls preload="auto" poster="{{ or (.Get "poster") $poster.RelPermalink }}" data-setup="{}">
+  <video controls preload="auto" poster="{{ or (.Get "poster") $poster.RelPermalink }}" data-setup="{}">
     <source src="{{ .Get "mp4" }}" type="video/mp4"></source>
-    <source src="{{ .Get "webm" }}" type="video/webm"></source>
-    <source src="{{ .Get "ogv" }}" type=video/ogg></source>
-    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a></p>
+    <p>To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
   </video>
-
-{{ else }}
-
-  <video id="my-player" class="video-js vjs-big-play-centered" controls preload="auto" poster="{{ if isset .Params 3 }}{{ .Get 3 }}{{ else }}{{ $poster.RelPermalink }}{{ end }}" data-setup="{}">
+  {{ else }}
+  <video controls preload="auto" poster="{{ if isset .Params 1 }}{{ .Get 1 }}{{ else }}{{ $poster.RelPermalink }}{{ end }}" data-setup="{}">
     <source src="{{ .Get 0 }}" type="video/mp4"></source>
-    <source src="{{ .Get 1 }}" type="video/webm"></source>
-    <source src="{{ .Get 2 }}" type="video/ogg"></source>
-    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a></p>
+    <p>To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
   </video>
-
-{{ end }}
+  {{ end }}
+  </div>
+</div>

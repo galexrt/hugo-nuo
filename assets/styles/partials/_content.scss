@@ -298,7 +298,7 @@
   }
 
   div.fullwidthimg {
-    figure {
+    div, figure {
       margin-left: -2rem;
       margin-right: -2.1rem;
 
@@ -307,7 +307,7 @@
         margin-right: -1rem;
       }
 
-      img {
+      video, img {
         box-shadow: 2px 20px 40px 10px $box-shadow-dark inset;
         width: 100%;
       }

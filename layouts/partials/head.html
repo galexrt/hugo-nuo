@@ -171,10 +171,4 @@
 {{ with .Site.Params.customStyle }}
 <link rel="stylesheet" href="{{ $customStyle.RelPermalink }}">{{ end }}
 
-<!-- Video.js Styles -->
-{{ if and (eq .Kind "page") (eq .Type "post") }}
-{{- $videojsmincss := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css" | resources.ToCSS | resources.Minify -}}
-<link rel="stylesheet" href="{{ $videojsmincss.RelPermalink }}" />
-{{ end }}
-
 {{ partial "pswp-head.html" . }}

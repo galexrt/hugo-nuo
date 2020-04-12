@@ -41,12 +41,6 @@ var filesToCache = [
     {{ end }}
     {{ end }}
 
-    // Video.js
-    {{ $videojsmincss := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css" | resources.ToCSS | resources.Minify }}
-    '{{ $videojsmincss.Permalink }}',
-    {{ $videominjs := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js" | resources.Minify }}
-    '{{ $videominjs.Permalink }}',
-
     // MathJax
 {{ $mathjaxjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" | resources.Minify | fingerprint }}
     '{{ $mathjaxjs.Permalink }}',

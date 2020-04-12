@@ -13,9 +13,6 @@
 {{ end }}
 
 {{ if and (eq .Kind "page") (eq .Type "post") }}
-<!-- Video.js for post -->
-{{- $videojs := resources.Get "cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js" | resources.Minify | fingerprint -}}
-<script async src="{{ $videojs.RelPermalink }}" {{ printf "integrity=%q" $videojs.Data.Integrity | safeHTMLAttr }}></script>
 <!-- Mathjax for post -->
 {{- $mathjaxjs := resources.Get "cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" | resources.Minify | fingerprint -}}
 <script async src="{{ $mathjaxjs.RelPermalink }}" {{ printf "integrity=%q" $mathjaxjs.Data.Integrity | safeHTMLAttr }}></script>
